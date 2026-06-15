@@ -231,6 +231,7 @@
     </style>
     </head>
     <body>
+        <!-- 網頁標頭區 -->
         <div class="top">
             <div class="container">
                 <div class="logo">
@@ -254,6 +255,7 @@
                 </div>
               </div>
         </div>
+        <!-- 導覽列 -->
         <div class="nav">   
             <ul>
                 <li><a href="#home">首頁</a></li>
@@ -268,6 +270,7 @@
                 <li><a href="#about">相關資訊</a></li>
             </ul>
         </div>
+        <!-- 輪播圖片區 -->
         <div class="slider">
             <div class="flexslider">
                 <ul class="slides">
@@ -278,37 +281,50 @@
             </div>
         </div>
         <!---佈告欄--->
+        <!-- 最新公告區 -->
         <div class="bulletin">
            <h1>最新公告</h1>
             <?php
-                $conn=mysqli_connect("120.105.96.90", "immust", "immustimmust", "immust");
-                $result=mysqli_query($conn, "select * from bulletin");
-                echo "<table border=2><tr><th>佈告編號</th><th>佈告類別</th><th>標題</th><th>佈告內容</th><th>發佈時間</th></tr>";
-                while ($row=mysqli_fetch_array($result)){
-                    echo "<tr><td>";
-                    echo $row["bid"];
-                    echo "</td><td>";
-                    if ($row["type"]==1) echo "系上公告";  
-                    if ($row["type"]==2) echo "獲獎資訊"; 
-                    if ($row["type"]==3) echo "徵才資訊"; 
-                    echo "</td><td>"; 
-                    echo $row["title"];
-                    echo "</td><td>";
-                    echo $row["content"]; 
-                    echo "</td><td>";
-                    echo $row["time"];
-                    echo "</td></tr>";
-                }
-                echo "</table>";
-            ?>
+    // 連接資料庫
+    $conn=mysqli_connect("120.105.96.90", "immust", "immustimmust", "immust");
+    // 查詢 bulletin 資料表中的所有佈告資料
+    $result=mysqli_query($conn, "select * from bulletin");
+    // 建立佈告欄表格標題
+    echo "<table border=2><tr><th>佈告編號</th><th>佈告類別</th><th>標題</th><th>佈告內容</th><th>發佈時間</th></tr>";
+    // 逐筆讀取佈告資料
+    while ($row=mysqli_fetch_array($result)){
+        echo "<tr><td>";
+        // 顯示佈告編號
+        echo $row["bid"];
+        echo "</td><td>";
+        // 將數字類型轉換成文字類型顯示
+        if ($row["type"]==1) echo "系上公告";  
+        if ($row["type"]==2) echo "獲獎資訊"; 
+        if ($row["type"]==3) echo "徵才資訊"; 
+        echo "</td><td>";
+        // 顯示佈告標題
+        echo $row["title"];
+        echo "</td><td>";
+        // 顯示佈告內容
+        echo $row["content"]; 
+        echo "</td><td>";
+        // 顯示發布時間
+        echo $row["time"];
+        echo "</td></tr>";
+    }
+    // 結束表格
+    echo "</table>";
+?>
         </div>
         <!---佈告欄--->
+        <!-- 系所簡介區 -->
         <div class="banner" id="introduction">
             <h1>系所簡介</h1>
             <h1>歷年教育部評鑑皆榮獲一等</h1>
             <h1>明新科技大學資訊管理系</h1>
             <h1>全國私立科大第一資管系</h1>
         </div>
+        <!-- 師資介紹區 -->
         <div class="faculty" id="faculty">
             <h2>師資介紹</h2>
             <div class="container">
@@ -326,6 +342,7 @@
                 </a>        
             </div>
         </div>
+        <!-- 相關資訊區 -->
         <div class="contact" id="about">
                 <h2>相關資訊</h2>
                 <div class="infos">
@@ -342,6 +359,7 @@
                     </div>
                 </div>
         </div>
+        <!-- 頁尾區 -->
         <div class="footer">
             &copy;Copyright 2022 Department of Information Management, MUST. All rights reserved. 維護者 Tony SHHuang
         </div>
